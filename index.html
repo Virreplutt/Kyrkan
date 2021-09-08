@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="https://www.svenskakyrkan.se/presentation/assets/favicons/favicon.ico" />
+    <link rel="icon" type="image/png" href="/assets/favicon-16x16-0e76e6baa32992451bb9eeb1dcfae8a829e71b7909a859e7d51438954e314fe0.png" sizes="16x16" />
+
+  <h1><link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet"></h1>
+  <style>
+
+  </style>
+    <title>Öppen förskola i Uppenbarelsekyrkan </title>
+</head>
+<body>
+   <style>
+    body { 
+    background: url(pexels-artem-podrez-6941450.jpg) no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+      </style>
+    <div class="container py-5">
+        <div class="row">
+            <div class="col-lg-5 col-md-8 mx-auto shadow border bg-white p-4 rounded">
+            
+                   <center> <img src="//dev.alpsjo.se/konfirmation/logo-svenska-kyrkan-553x74.png"  style="width:277px;height: 37px;"> </center>
+               
+            
+                <br> 
+                <div>
+                    <p class="text-center ">Anmälan Öppen förskola </p>
+                </div>
+                <form action="POST" data-netlify="true", name="google-sheet">
+                    <div id="form_alerts"></div>
+                    <div class="form-group mb-3">
+                        <label for="name" class="form-label">Namn</label>
+                        <input type="text" id="name" name="name" class="form-control" placeholder="Ditt Namn" required>
+                    </div>
+                    <div class="form-group mb-3">
+                        <label for="email" class="form-label">Email</label>
+                        <input type="email" id="email" name="email" class="form-control" placeholder="Din e-post" required>
+                    </div>
+                    <div class="form-group mb-3">
+                        <label for="message" class="form-label">Allergier</label>
+                        <textarea id="message" name="message" class="form-control" placeholder="Meddelande" rows="5"></textarea>
+                    </div>
+                    <div class="form-group mb-3">
+                       <label for="checkbox" class="form-label" style="font-size:12px"><i><u>Godkänner du att vi håller i de uppgifter du angivit upp till 7 dagar?</u></i></label>
+                       <input type="checkbox" id="checkbox" name="checkbox" style="font-size:medium" required>
+                       </label>
+                    </div>
+                    <div>
+                        <button class="btn btn-primary me-2" type="submit">Skicka!</button>
+                        <button class="btn btn-danger" type="reset">Nollställ!</button>
+                    
+                    </div>
+                    <br>
+                    <p>Läs mer om barn och familj!</p> <i> <u> <a href="https://www.svenskakyrkan.se/hagersten/barn-och-familj">Klicka här</a> </u></i>
+           
+                </form>
+            </div>
+        </div>
+    </div>
+  
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        const scriptURL = 'https://script.google.com/macros/s/AKfycbzETyh3RQg_282YhrizYlK-6YQTLNOBCw_ikaSUcMwULb5QXRiopC9LzbUndzGHREoB/exec'
+        const form = document.forms['google-sheet']
+        
+        form.addEventListener('submit', e => {
+            e.preventDefault()
+            fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+            .then(response => $("#form_alerts").html("<div class='alert alert-success'>Varmt välkomna!</div>"))
+            .catch(error => $("#form_alerts").html("<div class='alert alert-danger'>Tyvärr gick inte din anmälan igenom</div>"))
+        })
+    </script>
+</body>
+</html>
